@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "tag": "Amersfoort Nieuwland · Sportfysio & Running",
+    "titel": "Jouw lichaam, optimaal presteren.",
+    "subtitel": "Van blessurevrij hardlopen tot een compleet vitaliteitstraject. Wij helpen je niet alleen herstellen — wij helpen je verder komen dan je ooit was.",
+    "knop_primair": "Ontdek jouw pad →",
+    "knop_secundair": "Gratis intake aanvragen",
+    "stat1_getal": "10+",
+    "stat1_label": "Jaar ervaring",
+    "stat2_getal": "6",
+    "stat2_label": "Vitaliteitsdomeinen",
+    "stat3_getal": "100%",
+    "stat3_label": "Persoonlijk"
+  },
+  "paden": {
+    "titel": "Veel mensen beginnen met een klacht. De slimsten blijven voor meer.",
+    "subtitel": "Fysio is onze instroom — vitaliteit, kracht en prestatie zijn ons doel. Kies het pad dat bij jou past."
+  },
+  "vitaliteit": {
+    "titel": "Jouw lichaam herstelt zichzelf — als je het laat",
+    "tekst": "Moe, blessure die niet wil genezen, darmklachten, gewicht dat er niet af wil? Dit zijn signalen dat jouw herstelvermogen verminderd is. Met ons vitaliteitstraject brengen we de 6 domeinen weer in balans."
+  },
+  "hardlopen": {
+    "titel": "Harder lopen begint bij beter herstellen",
+    "tekst": "Dorien is zelf marathonloper en begrijpt als geen ander wat jouw lichaam nodig heeft. Haar aanpak voor lopers is gericht op twee pijlers: blessurepreventie en optimaal herstelvermogen. Want wie beter herstelt, kan harder trainen."
+  },
+  "bootcamp": {
+    "titel": "Buiten trainen, samen sterker.",
+    "tekst": "Hardlooptechniek, kracht, conditie en cooling-down — allemaal in één uur buiten in Amersfoort Nieuwland. Dorien Janse past elke oefening aan op jouw niveau, ook bij blessures. Wandelen als hardlopen nog niet kan? Geen probleem."
+  },
+  "diensten": {
+    "titel": "Meer dan alleen fysiotherapie",
+    "tekst": "Onze aanpak gaat verder dan het behandelprotocol. We combineren sportfysio, training en vitaliteitsbegeleiding voor een compleet resultaat."
+  },
+  "contact": {
+    "titel": "Klaar om te starten?",
+    "tekst": "Stel een vraag, maak een afspraak of vraag de gratis Physis-vragenlijst aan. We reageren binnen één werkdag.",
+    "adres": "Astronaut 12, 3824 MJ Amersfoort (Nieuwland / Calveen)",
+    "telefoon": "06-14184448",
+    "email": "info@dorienjanse.nl"
+  },
+  "recensies": [
+    {
+      "tekst": "Zenuwklachten in nek en arm via mond-op-mondreclame bij Dorien terechtgekomen. Nu klachtenvrij en ben er blijven hangen voor de fysio/sport lessen. Erg blij met deze combipraktijk.",
+      "auteur": "Cliënt via Zorgkaart Nederland"
+    },
+    {
+      "tekst": "Goed georganiseerd en een prettig sportklimaat. Dorien en haar team kijken écht verder dan de klacht. Een aanrader voor iedereen die serieus aan herstel en prestatie wil werken.",
+      "auteur": "Cliënt via Zorgkaart Nederland"
+    },
+    {
+      "tekst": "Eindelijk een fysio die begrijpt wat een hardloper nodig heeft. Niet alleen de blessure behandelen maar ook kijken naar voeding, slaap en training. Dat maakt het verschil.",
+      "auteur": "Hardloper, Amersfoort"
+    }
+  ]
+}
