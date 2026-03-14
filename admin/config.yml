@@ -1,12 +1,98 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beheer · DorienJanse.nl</title>
-</head>
-<body>
-  <!-- Decap CMS (voorheen Netlify CMS) -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body>
-</html>
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+media_library:
+  name: uploadcare
+
+collections:
+  - name: "teksten"
+    label: "Websiteteksten"
+    files:
+
+      - label: "Hero"
+        name: "hero"
+        file: "data/content.json"
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Tag (kleine tekst boven titel)", name: "tag", widget: "string" }
+              - { label: "Subtekst", name: "subtitel", widget: "text" }
+              - { label: "Stat 1 getal", name: "stat1_getal", widget: "string" }
+              - { label: "Stat 1 label", name: "stat1_label", widget: "string" }
+              - { label: "Stat 2 getal", name: "stat2_getal", widget: "string" }
+              - { label: "Stat 2 label", name: "stat2_label", widget: "string" }
+              - { label: "Stat 3 getal", name: "stat3_getal", widget: "string" }
+              - { label: "Stat 3 label", name: "stat3_label", widget: "string" }
+
+      - label: "Vitaliteitstraject"
+        name: "vitaliteit"
+        file: "data/content.json"
+        fields:
+          - label: "Vitaliteit"
+            name: "vitaliteit"
+            widget: "object"
+            fields:
+              - { label: "Titel", name: "titel", widget: "string" }
+              - { label: "Tekst", name: "tekst", widget: "text" }
+
+      - label: "Hardlopen"
+        name: "hardlopen"
+        file: "data/content.json"
+        fields:
+          - label: "Hardlopen"
+            name: "hardlopen"
+            widget: "object"
+            fields:
+              - { label: "Titel", name: "titel", widget: "string" }
+              - { label: "Tekst", name: "tekst", widget: "text" }
+
+      - label: "Bootcamp"
+        name: "bootcamp"
+        file: "data/content.json"
+        fields:
+          - label: "Bootcamp"
+            name: "bootcamp"
+            widget: "object"
+            fields:
+              - { label: "Titel", name: "titel", widget: "string" }
+              - { label: "Tekst", name: "tekst", widget: "text" }
+
+      - label: "Diensten"
+        name: "diensten"
+        file: "data/content.json"
+        fields:
+          - label: "Diensten"
+            name: "diensten"
+            widget: "object"
+            fields:
+              - { label: "Titel", name: "titel", widget: "string" }
+              - { label: "Tekst", name: "tekst", widget: "text" }
+
+      - label: "Contact"
+        name: "contact"
+        file: "data/content.json"
+        fields:
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Titel", name: "titel", widget: "string" }
+              - { label: "Tekst", name: "tekst", widget: "text" }
+              - { label: "Adres", name: "adres", widget: "string" }
+              - { label: "Telefoon", name: "telefoon", widget: "string" }
+              - { label: "E-mail", name: "email", widget: "string" }
+
+      - label: "Recensies"
+        name: "recensies"
+        file: "data/content.json"
+        fields:
+          - label: "Recensies"
+            name: "recensies"
+            widget: "list"
+            fields:
+              - { label: "Tekst", name: "tekst", widget: "text" }
+              - { label: "Auteur", name: "auteur", widget: "string" }
