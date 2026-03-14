@@ -3,1203 +3,1974 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dorien Janse — Fysiotherapie & Vitaliteit voor Hardlopers & Wielrenners</title>
+<title>Dorien Janse | Sportfysio & Running Coach | Amersfoort</title>
+<meta name="description" content="Sportfysiotherapie, hardloopbegeleiding en holistische vitaliteitszorg in Amersfoort. Persoonlijk, grondig en gericht op duurzaam herstel.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- CMS content loader: laadt data/content.json en vult data-cms attributen in -->
+<script>
+  (function() {
+    fetch('/data/content.json')
+      .then(r => r.json())
+      .then(d => {
+        // Vul alle elementen met data-cms attribuut in
+        document.querySelectorAll('[data-cms]').forEach(el => {
+          const keys = el.getAttribute('data-cms').split('.');
+          let val = d;
+          for (const k of keys) {
+            if (val == null) break;
+            // Ondersteuning voor recensies[0].tekst notatie
+            const arrMatch = k.match(/^(\w+)\[(\d+)\]$/);
+            if (arrMatch) val = val[arrMatch[1]]?.[parseInt(arrMatch[2])];
+            else val = val[k];
+          }
+          if (val != null && typeof val === 'string') el.textContent = val;
+        });
+      })
+      .catch(() => { /* Geen JSON beschikbaar, gebruik de hardcoded tekst */ });
+  })();
+</script>
+
+<!-- Google Analytics GA4 — vervang G-XXXXXXXXXX door jouw eigen Measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
 <style>
   :root {
-    --black: #1a1a1a;
-    --white: #ffffff;
-    --cream: #f7f4f0;
-    --orange: #e85d20;
-    --orange-light: #f07840;
-    --green: #2d5a2d;
-    --green-light: #4a7c4a;
-    --mud: #8b7355;
-    --gray: #5a5a5a;
-    --light-gray: #888888;
+    --clay: #C9A87C;
+    --clay-light: #E8D5B7;
+    --forest: #2C3E2D;
+    --forest-mid: #3D5740;
+    --sage: #7A9E7E;
+    --cream: #F7F3EE;
+    --dark: #1A1F1B;
+    --white: #FFFFFF;
+    --track: #E8421A;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  html { 
+    scroll-behavior: smooth; 
+    scroll-padding-top: 80px;
+  }
 
   body {
-    background: #f7f4f0;
-    color: var(--black);
-    font-family: 'Lora', Georgia, serif;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
     overflow-x: hidden;
   }
 
-  /* ── NAV ── */
+  /* ─── NAV ─── */
   nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 5%;
-    background: rgba(255,255,255,0.95);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(247,243,238,0.92);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(232,93,32,0.15); box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(44,62,45,0.08);
   }
+
   .nav-logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.5rem; font-weight: 900;
-    letter-spacing: 0.05em; color: var(--white);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: var(--forest);
+    letter-spacing: -0.02em;
     text-decoration: none;
   }
-  .nav-logo span { color: var(--orange); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--light-gray);
-    text-decoration: none; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--orange); }
-  .nav-cta {
-    background: var(--orange); color: var(--white) !important;
-    padding: 8px 22px; border-radius: 2px;
-    color: var(--white) !important;
-  }
-  .nav-cta:hover { background: var(--orange-light) !important; color: var(--white) !important; }
+  .nav-logo span { color: var(--clay); }
 
-  /* ── HERO ── */
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--forest);
+    text-decoration: none;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-cta {
+    background: var(--forest);
+    color: var(--cream) !important;
+    padding: 0.6rem 1.4rem !important;
+    border-radius: 2px;
+    opacity: 1 !important;
+  }
+  .nav-cta:hover { background: var(--track); color: var(--white) !important; }
+
+  /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
-    display: grid; grid-template-columns: 1fr 1fr;
-    position: relative; overflow: hidden;
-    padding-top: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
   }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: 
-      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(45,90,45,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(232,93,32,0.08) 0%, transparent 50%),
-      linear-gradient(160deg, #ffffff 0%, #f7f4f0 50%, #f0ede8 100%);
-  }
-  .hero-texture {
-    position: absolute; inset: 0; opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
+
   .hero-left {
-    position: relative; z-index: 2;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 80px 6% 80px 8%;
+    background: var(--forest);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8rem 4rem 5rem;
+    position: relative;
+    overflow: hidden;
   }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,124,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
   .hero-tag {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.25em;
-    text-transform: uppercase; color: var(--orange);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clay);
     margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 12px;
   }
-  .hero-tag::before {
-    content: ''; display: block;
-    width: 40px; height: 2px; background: var(--orange);
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 0.5rem;
   }
-  h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(3.2rem, 6vw, 5.5rem);
-    font-weight: 900; line-height: 0.92;
-    letter-spacing: -0.01em;
-    text-transform: uppercase; color: var(--black);
-    margin-bottom: 1.8rem;
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--clay);
   }
-  h1 .accent { color: var(--orange); font-style: italic; }
-  h1 .green-word { color: #7bc47b; }
+
   .hero-sub {
-    font-family: 'Lora', serif;
-    font-size: 1.1rem; line-height: 1.7;
-    color: #555; max-width: 480px;
-    margin-bottom: 2.5rem;
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    max-width: 380px;
+    margin: 1.8rem 0 2.5rem;
   }
-  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 3rem; }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
   .btn-primary {
-    background: var(--orange); color: var(--white);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none;
-    padding: 16px 36px; border-radius: 2px;
-    display: inline-block; transition: all 0.2s;
-    border: 2px solid var(--orange);
+    background: var(--clay);
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
   }
-  .btn-primary:hover {
-    background: transparent; color: var(--orange);
-    transform: translateY(-2px);
+  .btn-primary:hover { background: #b8946a; transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.8);
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    border-radius: 2px;
+    transition: all 0.2s;
   }
-  .btn-secondary {
-    background: transparent; color: var(--white);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none;
-    padding: 16px 36px; border-radius: 2px;
-    display: inline-block; transition: all 0.2s;
-    border: 2px solid rgba(255,255,255,0.3);
-  }
-  .btn-secondary:hover {
-    border-color: var(--white); transform: translateY(-2px);
-  }
+  .btn-outline:hover { border-color: var(--clay); color: var(--clay); }
+
   .hero-stats {
-    display: flex; gap: 2.5rem;
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
   }
-  .stat-item {}
+
   .stat-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2.2rem; font-weight: 900; color: var(--orange);
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--clay);
     line-height: 1;
   }
   .stat-label {
-    font-size: 0.78rem; color: var(--light-gray);
-    text-transform: uppercase; letter-spacing: 0.08em;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
-    color: #555;
-    margin-top: 4px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+    margin-top: 0.3rem;
   }
+
   .hero-right {
-    position: relative; z-index: 2;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hero-image-frame {
-    position: relative; width: 85%; max-width: 520px;
-  }
-  .hero-photo {
-    width: 100%; aspect-ratio: 3/4;
-    background: #1a2e1a;
-    border-radius: 4px;
-    position: relative; overflow: hidden;
-    display: flex; align-items: flex-end;
-  }
-  .hero-photo-inner {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 8rem; font-weight: 900; color: rgba(255,255,255,0.04);
-    letter-spacing: -0.05em;
     position: relative;
-  }
-  /* Simulated athlete silhouette using CSS */
-  .athlete-shape {
-    position: absolute; bottom: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 70%; height: 85%;
-    background: linear-gradient(180deg, rgba(45,74,45,0.6) 0%, rgba(10,10,10,0.9) 100%);
-    clip-path: polygon(35% 0%, 65% 0%, 80% 15%, 85% 35%, 75% 50%, 80% 65%, 90% 100%, 10% 100%, 20% 65%, 25% 50%, 15% 35%, 20% 15%);
-  }
-  .hero-badge {
-    position: absolute; top: -20px; right: -20px;
-    width: 110px; height: 110px;
-    background: var(--orange); border-radius: 50%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900; color: var(--white);
-    font-size: 0.72rem; letter-spacing: 0.08em;
-    text-transform: uppercase; line-height: 1.2;
-    box-shadow: 0 8px 30px rgba(232,93,32,0.4);
-    animation: spin 20s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .hero-badge-inner {
-    animation: spin-reverse 20s linear infinite;
-    text-align: center; padding: 8px;
-  }
-  @keyframes spin-reverse { to { transform: rotate(-360deg); } }
-  .hero-stripe {
-    position: absolute; bottom: -15px; left: 0; right: -15px;
-    height: 8px; background: var(--orange);
+    overflow: hidden;
+    background: var(--forest-mid);
   }
 
-  /* ── URGENCY BANNER ── */
-  .urgency-banner {
-    background: var(--orange);
-    padding: 14px 5%;
-    display: flex; align-items: center; justify-content: center; gap: 2rem;
-    flex-wrap: wrap;
-  }
-  .urgency-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--white);
-  }
-  .urgency-cta {
-    background: var(--white); color: var(--orange);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem; font-weight: 800; letter-spacing: 0.15em;
-    text-transform: uppercase; text-decoration: none;
-    padding: 8px 24px; border-radius: 2px;
-    transition: all 0.2s;
-  }
-  .urgency-cta:hover { background: var(--black); color: var(--white); }
-
-  /* ── SECTION SHARED ── */
-  section { padding: 100px 8%; }
-  .section-tag {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.25em;
-    text-transform: uppercase; color: var(--orange);
-    margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .section-tag::before {
-    content: ''; display: block; width: 30px; height: 2px; background: var(--orange);
-  }
-  h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2.5rem, 4.5vw, 4rem);
-    font-weight: 900; line-height: 0.95;
-    text-transform: uppercase; color: var(--black);
-    margin-bottom: 1.5rem;
-  }
-  h2 .accent { color: var(--orange); font-style: italic; }
-  h2 .green { color: #7bc47b; }
-  .section-intro {
-    font-size: 1.05rem; line-height: 1.75;
-    color: #666; max-width: 580px;
-    margin-bottom: 3.5rem;
-  }
-
-  /* ── DOELGROEP (WHO) ── */
-  .who-section { background: var(--cream); color: var(--black); }
-  .who-section .section-tag { color: var(--orange); }
-  .who-section h2 { color: var(--black); }
-  .who-section .section-intro { color: var(--gray); }
-  .who-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-  }
-  .who-card {
-    background: var(--black); padding: 40px 36px;
-    position: relative; overflow: hidden;
-    transition: all 0.3s; cursor: pointer;
-  }
-  .who-card::before {
-    content: ''; position: absolute; top: 0; left: 0;
-    width: 4px; height: 0; background: var(--orange);
-    transition: height 0.3s;
-  }
-  .who-card:hover::before { height: 100%; }
-  .who-card:hover { transform: translateY(-4px); }
-  .who-icon {
-    font-size: 2.5rem; margin-bottom: 1.2rem; display: block;
-  }
-  .who-card h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.6rem; font-weight: 800;
-    text-transform: uppercase; color: var(--white);
-    margin-bottom: 0.8rem;
-  }
-  .who-card p {
-    font-size: 0.9rem; line-height: 1.65; color: var(--light-gray);
-  }
-
-  /* ── DIENSTEN ── */
-  .services-section { background: #fff; }
-  .services-section h2, .services-section .section-tag ~ h2 { color: var(--black); }
-  .services-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 3px;
-  }
-  .service-card {
-    position: relative; overflow: hidden;
-    min-height: 320px; cursor: pointer;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 40px;
-    transition: all 0.3s;
-  }
-  .service-bg {
-    position: absolute; inset: 0;
-    transition: transform 0.4s ease;
-  }
-  .service-card:hover .service-bg { transform: scale(1.05); }
-  .service-card:nth-child(1) .service-bg {
-    background: linear-gradient(160deg, #1a3a1a 0%, #0d1f0d 100%);
-  }
-  .service-card:nth-child(2) .service-bg {
-    background: linear-gradient(160deg, #3a1a08 0%, #1f0d04 100%);
-  }
-  .service-card:nth-child(3) .service-bg {
-    background: linear-gradient(160deg, #1a1a3a 0%, #0d0d1f 100%);
-  }
-  .service-card:nth-child(4) .service-bg {
-    background: linear-gradient(160deg, #3a2a08 0%, #1f1504 100%);
-  }
-  .service-card::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
-  }
-  .service-content { position: relative; z-index: 2; }
-  .service-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 5rem; font-weight: 900;
-    color: rgba(255,255,255,0.06); line-height: 1;
-    position: absolute; top: 20px; right: 28px; z-index: 2;
-  }
-  .service-icon {
-    font-size: 2rem; margin-bottom: 12px; display: block;
-  }
-  .service-card h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2rem; font-weight: 900;
-    text-transform: uppercase; color: var(--white);
-    margin-bottom: 0.5rem; line-height: 1;
-  }
-  .service-card p {
-    font-size: 0.88rem; color: var(--light-gray);
-    line-height: 1.6; margin-bottom: 1.2rem;
-  }
-  .service-link {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem; font-weight: 700;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--orange); text-decoration: none;
-    display: flex; align-items: center; gap: 8px;
-    transition: gap 0.2s;
-  }
-  .service-link:hover { gap: 14px; }
-
-  /* ── VITALITEIT HIGHLIGHT ── */
-  .vitality-section {
-    background: var(--green);
-    position: relative; overflow: hidden;
-  }
-  .vitality-section::before {
-    content: 'VITAAL'; position: absolute;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20vw; font-weight: 900;
-    color: rgba(0,0,0,0.15); line-height: 1;
-    top: 50%; left: 50%; transform: translate(-50%, -50%);
-    white-space: nowrap; pointer-events: none;
-  }
-  .vitality-inner {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 6rem; align-items: center;
-    position: relative; z-index: 2;
-  }
-  .vitality-left {}
-  .vitality-section .section-tag { color: rgba(255,255,255,0.7); }
-  .vitality-section .section-tag::before { background: rgba(255,255,255,0.7); }
-  .vitality-section h2 { color: var(--white); }
-  .vitality-desc {
-    font-size: 1.05rem; line-height: 1.75;
-    color: rgba(255,255,255,0.8); margin-bottom: 2.5rem;
-  }
-  .vitality-pillars {
-    display: flex; flex-direction: column; gap: 1rem;
-  }
-  .pillar {
-    display: flex; align-items: center; gap: 16px;
-    background: rgba(0,0,0,0.2); padding: 16px 20px; border-radius: 2px;
-  }
-  .pillar-icon { font-size: 1.4rem; }
-  .pillar-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 700;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--white);
-  }
-  .vitality-right {}
-  .program-card {
-    background: var(--black); padding: 48px 40px;
-    border-radius: 4px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-    position: relative; overflow: hidden;
-  }
-  .program-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 4px; background: linear-gradient(90deg, var(--orange), #e8c020);
-  }
-  .program-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2rem; font-weight: 900;
-    text-transform: uppercase; color: var(--white);
-    margin-bottom: 0.5rem;
-  }
-  .program-sub { font-size: 0.9rem; color: var(--light-gray); margin-bottom: 2rem; }
-  .program-includes {
-    list-style: none; margin-bottom: 2.5rem;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .program-includes li {
-    font-size: 0.92rem; color: var(--white);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .program-includes li::before {
-    content: '✓'; color: #7bc47b;
-    font-weight: 700; font-size: 1rem;
-    flex-shrink: 0;
-  }
-  .program-price {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; color: var(--light-gray);
-    margin-bottom: 1.5rem;
-    display: flex; align-items: baseline; gap: 8px;
-  }
-  .price-num { font-size: 2.5rem; font-weight: 900; color: var(--orange); }
-
-  /* ── BOOTCAMP ── */
-  .bootcamp-section { background: #fff; }
-  .bootcamp-inner {
-    display: grid; grid-template-columns: 1.2fr 1fr;
-    gap: 5rem; align-items: start;
-  }
-  .bootcamp-schedule {
-    display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;
-  }
-  .schedule-item {
-    display: flex; align-items: center; gap: 20px;
-    padding: 20px 24px;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 2px;
-    transition: all 0.2s; cursor: pointer;
-  }
-  .schedule-item:hover {
-    border-color: var(--orange);
-    background: rgba(232,93,32,0.04);
-  }
-  .schedule-day {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.5rem; font-weight: 900;
-    color: var(--orange); min-width: 60px;
-  }
-  .schedule-info {}
-  .schedule-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; font-weight: 700;
-    text-transform: uppercase; color: var(--black);
-  }
-  .schedule-meta {
-    font-size: 0.82rem; color: var(--light-gray); margin-top: 2px;
-  }
-  .schedule-spots {
-    margin-left: auto; text-align: right;
-  }
-  .spots-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; font-weight: 700; color: #7bc47b;
-  }
-  .spots-label { font-size: 0.72rem; color: var(--light-gray); }
-  .bootcamp-right {}
-  .bootcamp-features {
-    display: flex; flex-direction: column; gap: 2rem;
-    margin-bottom: 3rem;
-  }
-  .feature {
-    display: flex; gap: 20px;
-  }
-  .feature-icon {
-    width: 48px; height: 48px; flex-shrink: 0;
-    background: rgba(232,93,32,0.12);
-    border-radius: 2px; display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-  }
-  .feature-text h4 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; font-weight: 700;
-    text-transform: uppercase; color: var(--black);
-    margin-bottom: 4px;
-  }
-  .feature-text p { font-size: 0.88rem; color: #555; line-height: 1.55; }
-
-  /* ── SUPPLEMENTEN ── */
-  .supps-section { background: var(--cream); }
-  .supps-section h2 { color: var(--black); }
-  .supps-section .section-tag { color: var(--orange); }
-  .supps-section .section-intro { color: var(--gray); }
-  .supps-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-  }
-  .supp-card {
-    background: var(--black); padding: 32px 24px;
-    border-radius: 2px; text-align: center;
-    position: relative; overflow: hidden;
-    transition: all 0.3s; cursor: pointer;
-  }
-  .supp-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-  .supp-card::after {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-    height: 3px; background: var(--orange);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.3s;
-  }
-  .supp-card:hover::after { transform: scaleX(1); }
-  .supp-img {
-    width: 80px; height: 80px; margin: 0 auto 1rem;
-    background: rgba(45,74,45,0.4); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem;
-  }
-  .supp-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.2rem; font-weight: 800;
-    text-transform: uppercase; color: var(--white);
-    margin-bottom: 0.4rem;
-  }
-  .supp-desc { font-size: 0.82rem; color: var(--light-gray); line-height: 1.5; margin-bottom: 1rem; }
-  .supp-cta {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.82rem; font-weight: 700;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--orange); text-decoration: none;
-  }
-
-  /* ── TESTIMONIALS ── */
-  .testimonials-section { background: var(--cream); }
-  .testimonials-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-  }
-  .testimonial {
-    background: #fff; padding: 40px 36px;
-    border-top: 3px solid transparent;
-    transition: border-color 0.3s;
-  }
-  .testimonial:hover { border-top-color: var(--orange); }
-  .testimonial-text {
-    font-style: italic; font-size: 1rem; line-height: 1.7;
-    color: #555; margin-bottom: 1.5rem;
-  }
-  .testimonial-text::before { content: '"'; color: var(--orange); font-size: 2rem; line-height: 0; vertical-align: -0.4em; margin-right: 4px; }
-  .testimonial-author {
-    display: flex; align-items: center; gap: 14px;
-  }
-  .author-avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: var(--green); display: flex; align-items: center; justify-content: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 800; color: var(--white);
-    flex-shrink: 0;
-  }
-  .author-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem; font-weight: 700;
-    text-transform: uppercase; color: var(--black);
-  }
-  .author-meta { font-size: 0.78rem; color: var(--light-gray); }
-  .stars { color: #e8c020; font-size: 0.9rem; }
-
-  /* ── DORIEN ── */
-  .about-section {
-    background: var(--cream);
-    display: grid; grid-template-columns: 1fr 1.4fr;
-    gap: 6rem; align-items: center;
-    padding: 100px 8%;
-  }
-  .about-left {}
-  .about-photo {
-    aspect-ratio: 3/4;
-    background: linear-gradient(160deg, #1a2e1a 0%, #0f1f0f 100%);
-    border-radius: 2px; overflow: hidden;
-    position: relative; display: flex; align-items: center; justify-content: center;
-  }
-  .about-photo-placeholder {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 700; letter-spacing: 0.2em;
-    text-transform: uppercase; color: rgba(255,255,255,0.2);
-    text-align: center;
-  }
-  .about-credentials {
-    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.5rem;
-  }
-  .credential {
-    background: rgba(232,93,32,0.1); border: 1px solid rgba(232,93,32,0.3);
-    padding: 6px 14px; border-radius: 2px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange);
-  }
-  .about-right {}
-  .about-right .section-tag { color: var(--orange); }
-  .about-right h2 { color: var(--white); }
-  .about-text {
-    font-size: 1rem; line-height: 1.8; color: #555;
-    margin-bottom: 1.2rem;
-  }
-  .about-text strong { color: var(--black); }
-  .about-ctas { display: flex; gap: 16px; margin-top: 2.5rem; }
-
-  /* ── CTA SECTION ── */
-  .final-cta {
-    background: var(--orange);
-    padding: 80px 8%; text-align: center;
-    position: relative; overflow: hidden;
-  }
-  .final-cta::before {
-    content: 'START'; position: absolute;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 25vw; font-weight: 900;
-    color: rgba(0,0,0,0.08); line-height: 1;
-    top: 50%; left: 50%; transform: translate(-50%, -50%);
-    white-space: nowrap; pointer-events: none;
-  }
-  .final-cta h2 {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    color: var(--white); margin-bottom: 1rem; position: relative; z-index: 2;
-  }
-  .final-cta p {
-    font-size: 1.1rem; color: rgba(255,255,255,0.85);
-    max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.65;
-    position: relative; z-index: 2;
-  }
-  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2; }
-  .btn-white {
-    background: var(--white); color: var(--orange);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; font-weight: 800; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none;
-    padding: 18px 44px; border-radius: 2px;
-    display: inline-block; transition: all 0.2s;
-    border: 2px solid var(--white);
-  }
-  .btn-white:hover { background: transparent; color: var(--white); }
-  .btn-white-outline {
-    background: transparent; color: var(--white);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; font-weight: 800; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none;
-    padding: 18px 44px; border-radius: 2px;
-    display: inline-block; transition: all 0.2s;
-    border: 2px solid rgba(255,255,255,0.6);
-  }
-  .btn-white-outline:hover { border-color: var(--white); }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #1a1a1a; padding: 60px 8% 30px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
-  .footer-top {
-    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 4rem; margin-bottom: 3rem;
-  }
-  .footer-brand {}
-  .footer-logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.8rem; font-weight: 900;
-    color: var(--white); margin-bottom: 1rem;
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 1;
+    filter: saturate(0.85) brightness(0.92);
     display: block;
   }
-  .footer-logo span { color: var(--orange); }
-  .footer-desc { font-size: 0.88rem; color: #aaa; line-height: 1.6; }
-  .footer-col h4 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--orange);
+
+  .hero-right-overlay {
+    position: absolute;
+    bottom: 3rem; right: 3rem;
+    background: rgba(247,243,238,0.95);
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    max-width: 240px;
+    border-left: 3px solid var(--clay);
+  }
+
+  .hero-right-overlay p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--forest);
+  }
+  .hero-right-overlay strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 6rem 4rem; }
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--forest);
     margin-bottom: 1.2rem;
   }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .footer-col a {
-    font-size: 0.88rem; color: var(--light-gray);
-    text-decoration: none; transition: color 0.2s;
+  .section-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #4a5440;
+    max-width: 560px;
   }
-  .footer-col a:hover { color: var(--white); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px;
-    display: flex; justify-content: space-between; align-items: center;
+
+  /* ─── DIENSTEN / CARDS ─── */
+  .diensten {
+    background: var(--white);
+    padding: 6rem 4rem;
   }
-  .footer-copy {
-    font-size: 0.78rem; color: var(--gray);
-    font-family: 'Barlow Condensed', sans-serif;
+
+  .diensten-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    align-items: end;
+  }
+
+  .diensten-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(44,62,45,0.08);
+  }
+
+  .dienst-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dienst-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--clay);
+    transition: width 0.4s;
+  }
+  .dienst-card:hover::after { width: 100%; }
+  .dienst-card:hover { background: var(--white); }
+
+  .dienst-icon {
+    width: 48px; height: 48px;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .dienst-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 0.8rem;
+  }
+
+  .dienst-desc {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #5a6b5c;
+  }
+
+  /* ─── RUNNING SECTION ─── */
+  .running {
+    background: var(--forest);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .running-inner {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    min-height: 80vh;
+  }
+
+  .running-content {
+    padding: 6rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .running-content .section-tag { color: var(--clay); }
+  .running-content .section-title { color: var(--white); }
+  .running-content .section-body { color: rgba(255,255,255,0.7); max-width: 480px; }
+
+  .running-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .pillar {
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 1.5rem;
+    border-radius: 2px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .pillar:hover {
+    border-color: var(--clay);
+    background: rgba(201,168,124,0.07);
+  }
+
+  .pillar-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--clay);
+    margin-bottom: 0.6rem;
+  }
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+  .pillar-desc {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .running-visual {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .running-visual img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: saturate(0.7) brightness(0.8);
+  }
+
+  .running-badge {
+    position: absolute;
+    top: 3rem; left: -1rem;
+    background: var(--track);
+    color: var(--white);
+    padding: 1rem 2rem 1rem 2.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ─── VITALITEIT ─── */
+  .vitaliteit {
+    background: var(--cream);
+    padding: 6rem 4rem;
+  }
+
+  .vitaal-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .vitaal-domains {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .domain-pill {
+    background: var(--white);
+    border: 1px solid rgba(44,62,45,0.12);
+    padding: 1rem 1.2rem;
+    border-radius: 2px;
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .domain-pill:hover {
+    background: var(--forest);
+    border-color: var(--forest);
+  }
+  .domain-pill:hover .domain-name { color: var(--white); }
+  .domain-pill:hover .domain-icon { filter: brightness(10); }
+
+  .domain-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+  .domain-name {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--forest);
+    text-transform: uppercase;
+  }
+
+  .vitaal-right { position: relative; }
+
+  .vitaal-card {
+    background: var(--forest);
+    color: var(--white);
+    padding: 3rem;
+    border-radius: 2px;
+  }
+
+  .vitaal-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+  }
+
+  .vitaal-packages {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .package-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .package-row:last-child { border-bottom: none; }
+  .package-name {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.85);
+  }
+  .package-price {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.88rem;
+    color: var(--clay);
+  }
+
+  /* ─── TEAM ─── */
+  .team {
+    background: var(--white);
+    padding: 6rem 4rem;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .team-card {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding: 2.5rem;
+    background: var(--cream);
+    border-top: 3px solid var(--clay);
+  }
+
+  .team-photo {
+    width: 140px; height: 140px;
+    border-radius: 2px;
+    object-fit: cover;
+    filter: saturate(0.9);
+  }
+
+  .team-photo-placeholder {
+    width: 140px; height: 140px;
+    background: var(--clay-light);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--clay);
+  }
+
+  .team-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 0.3rem;
+  }
+  .team-role {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 1rem;
+  }
+  .team-bio {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #4a5440;
+  }
+  .team-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+  .tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid rgba(44,62,45,0.2);
+    color: var(--forest-mid);
+    border-radius: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ─── RECENSIES ─── */
+  .recensies {
+    background: var(--forest);
+    padding: 6rem 4rem;
+    overflow: hidden;
+  }
+
+  .recensies .section-title { color: var(--white); }
+  .recensies .section-tag { color: var(--clay); }
+
+  .recensies-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .recensie-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 2px;
+    transition: background 0.3s;
+  }
+  .recensie-card:hover { background: rgba(255,255,255,0.1); }
+
+  .stars {
+    color: var(--clay);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .recensie-text {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .recensie-author {
+    font-size: 0.78rem;
+    color: var(--clay);
+    font-weight: 500;
     letter-spacing: 0.05em;
   }
 
-  /* ── SCROLL ANIMATIONS ── */
-  .reveal {
-    opacity: 0; transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+  /* ─── CONTACT ─── */
+  .contact {
+    background: var(--cream);
+    padding: 6rem 4rem;
   }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 960px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .who-grid { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr; }
-    .vitality-inner { grid-template-columns: 1fr; }
-    .bootcamp-inner { grid-template-columns: 1fr; }
-    .supps-grid { grid-template-columns: 1fr 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .about-section { grid-template-columns: 1fr; padding: 60px 6%; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    background: var(--forest);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .contact-detail h4 {
+    font-weight: 500;
+    font-size: 0.82rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 0.3rem;
+  }
+  .contact-detail p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--forest);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: 0.7;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--white);
+    border: 1px solid rgba(44,62,45,0.18);
+    padding: 0.9rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--dark);
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--clay); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .form-submit {
+    background: var(--forest);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--clay); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    padding: 3.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--white);
+  }
+  .footer-logo span { color: var(--clay); }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--clay); }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-line {
+    position: absolute;
+    bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.3);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .scroll-dot {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* ─── DIVIDER ─── */
+  .track-divider {
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--clay) 0, var(--clay) 40px,
+      transparent 40px, transparent 60px
+    );
+    opacity: 0.3;
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-mobile-overlay { display: block; pointer-events: none; }
+    .nav-mobile-overlay.open { pointer-events: auto; }
+    .nav-mobile-drawer { display: flex; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 45vh; }
+    .hero-left { padding: 7rem 2rem 3rem; }
+    section, .diensten, .running, .vitaliteit, .team, .recensies, .contact { padding: 4rem 1.5rem; }
+    .paden { padding: 4rem 1.5rem; }
+    .paden-grid { grid-template-columns: 1fr 1fr; }
+    .diensten-header, .vitaal-layout, .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .diensten-grid { grid-template-columns: 1fr 1fr; }
+    .running-inner { grid-template-columns: 1fr; }
+    .running-visual { height: 300px; }
+    .running-content { padding: 3rem 1.5rem; }
+    .running-pillars { grid-template-columns: 1fr; }
+    .bootcamp-inner { grid-template-columns: 1fr; padding: 4rem 1.5rem; min-height: unset; }
+    .bootcamp-card { margin-left: 0; margin-top: 2rem; padding: 2rem; }
+    .bootcamp-info { gap: 1.5rem; }
+    .suppl-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .supplementen-banner { padding: 4rem 1.5rem; }
+    .cta-banner { padding: 3rem 1.5rem; }
+    .cta-banner-inner { flex-direction: column; align-items: flex-start; }
+    .team-grid, .recensies-grid { grid-template-columns: 1fr; }
+    .team-card { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
   }
   @media (max-width: 600px) {
-    section { padding: 70px 5%; }
-    .supps-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr; }
+    .paden-grid { grid-template-columns: 1fr; }
   }
+
+  /* ─── ANIMATION ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* ─── JOUW PAD ─── */
+  .paden {
+    background: var(--white);
+    padding: 6rem 4rem;
+  }
+
+  .paden-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5px;
+    background: rgba(44,62,45,0.08);
+    margin-top: 1rem;
+  }
+
+  .pad-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .pad-card:hover { background: var(--white); }
+
+  .pad-featured {
+    background: var(--forest);
+    color: var(--white);
+  }
+  .pad-featured:hover { background: var(--forest-mid); }
+  .pad-featured .pad-title { color: var(--white); }
+  .pad-featured .pad-desc { color: rgba(255,255,255,0.75); }
+  .pad-featured .pad-features { color: rgba(255,255,255,0.7); }
+
+  .pad-secondary {
+    border-top: 3px solid rgba(44,62,45,0.15);
+  }
+
+  .pad-label {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: var(--clay);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 1px;
+  }
+
+  .pad-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+
+  .pad-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.2;
+  }
+
+  .pad-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #5a6b5c;
+    flex-grow: 1;
+  }
+
+  .pad-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: #4a5a4c;
+    line-height: 1.5;
+  }
+
+  .pad-cta {
+    display: inline-block;
+    margin-top: auto;
+    color: var(--clay);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-bottom: 1px solid var(--clay);
+    padding-bottom: 0.1rem;
+    width: fit-content;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .pad-cta:hover { color: var(--forest); border-color: var(--forest); }
+
+  /* ─── BOOTCAMP ─── */
+  .bootcamp {
+    background: var(--dark);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .bootcamp-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 75vh;
+    align-items: center;
+    gap: 0;
+    padding: 6rem 4rem;
+  }
+
+  .bootcamp-info {
+    display: flex;
+    gap: 3rem;
+    margin: 2.5rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .bootcamp-info-item { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  .bootcamp-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--clay);
+    line-height: 1;
+  }
+  .bootcamp-detail {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  .bootcamp-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .bootcamp-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-size: 0.88rem;
+  }
+  .bootcamp-option-name { color: rgba(255,255,255,0.75); }
+  .bootcamp-option-price {
+    font-family: 'Space Mono', monospace;
+    color: var(--clay);
+    font-size: 0.85rem;
+  }
+  .bootcamp-option-highlight .bootcamp-option-name { color: var(--white); font-weight: 500; }
+
+  .bootcamp-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 3rem;
+    border-radius: 2px;
+    margin-left: 2rem;
+  }
+
+  .bootcamp-why {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .bootcamp-why-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+  .bootcamp-why-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .bootcamp-why-item strong {
+    display: block;
+    color: var(--white);
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+  .bootcamp-why-item p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  /* ─── SUPPLEMENTEN ─── */
+  .supplementen-banner {
+    background: var(--forest);
+    padding: 5rem 4rem;
+  }
+
+  .suppl-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .suppl-left h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin: 0.8rem 0 1rem;
+  }
+  .suppl-left p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.65);
+    max-width: 420px;
+  }
+
+  .suppl-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .suppl-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(201,168,124,0.3);
+    color: var(--clay-light);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    padding: 0.4rem 0.9rem;
+    border-radius: 1px;
+    font-weight: 500;
+  }
+
+  /* ─── CTA BANNER ─── */
+  .cta-banner {
+    background: var(--forest-mid);
+    padding: 4rem;
+    border-top: 3px solid var(--clay);
+  }
+
+  .cta-banner-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .cta-banner-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; flex-shrink: 0; }
+
+  /* ─── DIENST LINK ─── */
+  .dienst-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--clay);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-bottom: 1px solid var(--clay);
+    padding-bottom: 0.1rem;
+    transition: color 0.2s;
+  }
+  .dienst-link:hover { color: var(--forest); border-color: var(--forest); }
+
+  /* ─── BOOTCAMP SCHEMA ─── */
+  .bootcamp-schema {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+  }
+
+  .schema-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .schema-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.9rem;
+  }
+  .schema-item:last-child { border-bottom: none; }
+
+  .schema-dag {
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+  }
+  .schema-tijden {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--clay);
+  }
+  .schema-item-accent .schema-dag { color: var(--clay-light); }
+
+  /* ─── HAMBURGER MENU ─── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+    z-index: 200;
+  }
+  .nav-hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--forest);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,31,27,0.5);
+    z-index: 98;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .nav-mobile-overlay.open { opacity: 1; }
+
+  .nav-mobile-drawer {
+    display: none;
+    position: fixed;
+    top: 0; right: 0;
+    width: min(320px, 85vw);
+    height: 100vh;
+    background: var(--cream);
+    z-index: 99;
+    padding: 5rem 2.5rem 3rem;
+    flex-direction: column;
+    gap: 0;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    overflow-y: auto;
+  }
+  .nav-mobile-drawer.open { transform: translateX(0); }
+
+  .nav-mobile-drawer a {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--forest);
+    text-decoration: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(44,62,45,0.08);
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-mobile-drawer a:hover { color: var(--clay); }
+  .nav-mobile-drawer .mobile-cta {
+    margin-top: 2rem;
+    background: var(--forest);
+    color: var(--cream) !important;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    border-radius: 2px;
+    border-bottom: none;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .nav-mobile-drawer .mobile-cta:hover { background: var(--track); }
+
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Dorien<span>Janse</span></a>
+  <a href="#home" class="nav-logo">Dorien<span>Janse</span></a>
   <ul class="nav-links">
-    <li><a href="#diensten">Diensten</a></li>
-    <li><a href="#vitaliteit">Vitaliteit</a></li>
+    <li><a href="#paden">Hoe het werkt</a></li>
+    <li><a href="#vitaliteit">Vitaliteitstraject</a></li>
     <li><a href="#bootcamp">Bootcamp</a></li>
-    <li><a href="#supplementen">Supplementen</a></li>
-    <li><a href="#over">Over Dorien</a></li>
-    <li><a href="#contact" class="nav-cta">Maak Afspraak</a></li>
+    <li><a href="#personal-training">Personal Training</a></li>
+    <li><a href="#hardlopen">Voor Lopers</a></li>
+    <li><a href="#diensten">Alle diensten</a></li>
+    <li><a href="#contact" class="nav-cta">Start hier →</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu openen" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-texture"></div>
-  <div class="hero-left">
-    <div class="hero-tag">Fysiotherapeut · Personal Trainer · Coach</div>
-    <h1>
-      Harder.<br>
-      <span class="accent">Sneller.</span><br>
-      <span class="green-word">Pijnvrij.</span>
-    </h1>
-    <p class="hero-sub">
-      Of je nu blessures wil voorkomen, persoonlijke records wil breken of gewoon vitaler wilt leven —
-      Dorien Janse begeleidt hardlopers en wielrenners naar hun beste versie.
-    </p>
-    <div class="hero-ctas">
-      <a href="#contact" class="btn-primary">Gratis intakegesprek →</a>
-      <a href="#diensten" class="btn-secondary">Bekijk diensten</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">12+</div>
-        <div class="stat-label">jaar ervaring</div>
+<!-- Mobile menu overlay & drawer -->
+<div class="nav-mobile-overlay" id="mobileOverlay"></div>
+<nav class="nav-mobile-drawer" id="mobileDrawer" aria-label="Mobiel menu">
+  <a href="#paden" class="mobile-link">Hoe het werkt</a>
+  <a href="#vitaliteit" class="mobile-link">Vitaliteitstraject</a>
+  <a href="#bootcamp" class="mobile-link">Bootcamp</a>
+  <a href="#personal-training" class="mobile-link">Personal Training</a>
+  <a href="#hardlopen" class="mobile-link">Voor Lopers</a>
+  <a href="#diensten" class="mobile-link">Alle diensten</a>
+  <a href="#team" class="mobile-link">Team</a>
+  <a href="#recensies" class="mobile-link">Recensies</a>
+  <a href="#contact" class="mobile-cta" onclick="closeMobileMenu()">Start hier → Gratis intake</a>
+</nav>
+
+<main>
+  <section id="home" class="hero">
+    <div class="hero-left">
+      <p class="hero-tag" data-cms="hero.tag">Amersfoort Nieuwland · Sportfysio &amp; Running</p>
+      <h1 class="hero-title">
+        Jouw lichaam,<br>
+        <em>optimaal</em><br>
+        presteren.
+      </h1>
+      <p class="hero-sub" data-cms="hero.subtitel">Van blessurevrij hardlopen tot een compleet vitaliteitstraject. Wij helpen je niet alleen herstellen — wij helpen je <em style="color:var(--clay);font-style:normal;font-weight:500;">verder komen</em> dan je ooit was.</p>
+      <div class="hero-btns">
+        <a href="#paden" class="btn-primary">Ontdek jouw pad →</a>
+        <a href="#contact" class="btn-outline">Gratis intake aanvragen</a>
       </div>
-      <div class="stat-item">
-        <div class="stat-num">500+</div>
-        <div class="stat-label">sporters begeleid</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">4</div>
-        <div class="stat-label">specialisaties</div>
-      </div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-image-frame">
-      <div class="hero-photo">
-        <img src="data:image/webp;base64,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" alt="Dorien Janse - Sportfysiotherapeut" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
-      </div>
-      <div class="hero-badge">
-        <div class="hero-badge-inner">
-          SPORT<br>FYSIOTHERAPEUT<br>★★★★★
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num" data-cms="hero.stat1_getal">10+</div>
+          <div class="stat-label" data-cms="hero.stat1_label">Jaar ervaring</div>
+        </div>
+        <div>
+          <div class="stat-num" data-cms="hero.stat2_getal">6</div>
+          <div class="stat-label" data-cms="hero.stat2_label">Vitaliteitsdomeinen</div>
+        </div>
+        <div>
+          <div class="stat-num" data-cms="hero.stat3_getal">100%</div>
+          <div class="stat-label" data-cms="hero.stat3_label">Persoonlijk</div>
         </div>
       </div>
-      <div class="hero-stripe"></div>
-    </div>
-  </div>
-</section>
 
-<!-- URGENCY BANNER -->
-<div class="urgency-banner">
-  <span class="urgency-text">🔥 Beperkte plekken beschikbaar voor het voorjaarsprogramma 2025</span>
-  <a href="#contact" class="urgency-cta">Claim jouw plek</a>
-</div>
-
-<!-- WIE IS DIT VOOR? -->
-<section class="who-section" id="doelgroep">
-  <div class="section-tag">Voor wie</div>
-  <h2>Jij bent op het<br><span class="accent">juiste adres</span></h2>
-  <p class="section-intro">Of je nu traint voor je eerste marathon, herstelt van een blessure of gewoon meer uit je lichaam wilt halen.</p>
-  <div class="who-grid reveal">
-    <div class="who-card">
-      <span class="who-icon">🏃</span>
-      <h3>Hardlopers</h3>
-      <p>Kniepijn, shin splints, hamstringproblemen of je looptechniek verbeteren. Dorien analyseert jouw bewegingspatroon en optimaliseert je prestaties van binnen én buiten.</p>
-    </div>
-    <div class="who-card">
-      <span class="who-icon">🚴</span>
-      <h3>Wielrenners</h3>
-      <p>Rugklachten, knieproblemen of een inefficiënte pedaaltechniek? Met fysiotherapie én bikefitting-inzicht help ik je langer, sterker en pijnvrijer te fietsen.</p>
-    </div>
-    <div class="who-card">
-      <span class="who-icon">⚡</span>
-      <h3>Prestatiegericht</h3>
-      <p>Wil je sneller zijn, meer uithoudingsvermogen opbouwen of eindelijk die PR behalen? Met gerichte coaching en het juiste vitaliteitsprogramma zet je de stap verder.</p>
-    </div>
-  </div>
-</section>
-
-<!-- DIENSTEN -->
-<section class="services-section" id="diensten">
-  <div class="section-tag">Wat ik doe</div>
-  <h2>Kies jouw<br><span class="accent">aanpak</span></h2>
-  <p class="section-intro">Van individuele fysiotherapie tot groepsbootcamps — er is altijd een optie die bij jou past.</p>
-  <div class="services-grid reveal">
-
-    <div class="service-card">
-      <div class="service-bg"></div>
-      <div class="service-num">01</div>
-      <div class="service-content">
-        <span class="service-icon">🩺</span>
-        <h3>Fysiotherapie</h3>
-        <p>Sportspecifieke behandeling en revalidatie voor hardlopers en wielrenners. Evidence-based aanpak gericht op snelle terugkeer naar sport.</p>
-        <a href="#contact" class="service-link">Maak afspraak →</a>
+      <div class="scroll-line">
+        <div class="scroll-dot"></div>
+        scroll
       </div>
     </div>
 
-    <div class="service-card">
-      <div class="service-bg"></div>
-      <div class="service-num">02</div>
-      <div class="service-content">
-        <span class="service-icon">💪</span>
-        <h3>Personal Training</h3>
-        <p>1-op-1 begeleiding op maat. Kracht, mobiliteit, looptechniek of duurvermogen — we werken naar jouw specifieke doel.</p>
-        <a href="#contact" class="service-link">Start vandaag →</a>
+    <div class="hero-right">
+      <img
+        class="hero-img"
+        src="https://primary.jwwb.nl/public/v/p/j/temp-medrplgfuclrcarjtpom/zomerfoto-2.jpg"
+        alt="Dorien Janse Sportfysio"
+        onerror="this.style.background='#3D5740';this.removeAttribute('src')"
+      >
+      <div class="hero-right-overlay">
+        <strong>Holistische aanpak</strong>
+        <p>Niet alleen de klacht behandelen, maar ook de oorzaak aanpakken. Zo herstel je duurzaam.</p>
       </div>
     </div>
+  </section>
 
-    <div class="service-card">
-      <div class="service-bg"></div>
-      <div class="service-num">03</div>
-      <div class="service-content">
-        <span class="service-icon">🌿</span>
-        <h3>Vitaliteitsprogramma</h3>
-        <p>Een holistisch 12-weeksprogramma dat sport, voeding, slaap en mindset combineert. Niet alleen beter presteren — ook beter leven.</p>
-        <a href="#vitaliteit" class="service-link">Ontdek programma →</a>
-      </div>
-    </div>
+  <div class="track-divider"></div>
 
-    <div class="service-card">
-      <div class="service-bg"></div>
-      <div class="service-num">04</div>
-      <div class="service-content">
-        <span class="service-icon">🏕️</span>
-        <h3>Bootcamps</h3>
-        <p>Energieke groepsessies speciaal voor sporters. Functionele training, interval runs en kracht — samen harder gaan.</p>
-        <a href="#bootcamp" class="service-link">Bekijk schema →</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- VITALITEITSPROGRAMMA -->
-<section class="vitality-section" id="vitaliteit">
-  <div class="vitality-inner">
-    <div class="vitality-left reveal">
-      <div class="section-tag">Holistisch programma</div>
-      <h2>Meer dan<br>sport alleen</h2>
-      <p class="vitality-desc">
-        Echt vitaal zijn gaat verder dan trainen. Het Vitaliteitsprogramma van Dorien pakt alle pijlers aan die bepalen hoe goed jij functioneert — als atleet én als mens.
-      </p>
-      <div class="vitality-pillars">
-        <div class="pillar">
-          <span class="pillar-icon">🏃</span>
-          <span class="pillar-text">Beweegprogramma op maat</span>
-        </div>
-        <div class="pillar">
-          <span class="pillar-icon">🥗</span>
-          <span class="pillar-text">Voeding & sportvoeding</span>
-        </div>
-        <div class="pillar">
-          <span class="pillar-icon">😴</span>
-          <span class="pillar-text">Slaap & hersteloptimalisatie</span>
-        </div>
-        <div class="pillar">
-          <span class="pillar-icon">🧠</span>
-          <span class="pillar-text">Mindset & stressmanagement</span>
-        </div>
-        <div class="pillar">
-          <span class="pillar-icon">💊</span>
-          <span class="pillar-text">Supplementadvies & begeleiding</span>
-        </div>
-      </div>
-    </div>
-    <div class="vitality-right reveal">
-      <div class="program-card">
-        <div class="program-title">12-Weken Vitaal Programma</div>
-        <p class="program-sub">Compleet traject voor sporters die verder willen gaan</p>
-        <ul class="program-includes">
-          <li>Intake + uitgebreide beweeganalyse</li>
-          <li>Wekelijkse 1-op-1 coaching sessie</li>
-          <li>Gepersonaliseerd trainingsplan</li>
-          <li>Voedings- & supplementenplan</li>
-          <li>Onbeperkte app-begeleiding</li>
-          <li>2x groepsbootcamp per week</li>
-          <li>Eindmeting + vervolgadvies</li>
+  <!-- ─── JOUW PAD SECTIE ─── -->
+  <section id="paden" class="paden">
+    <div class="paden-grid">
+      <div class="pad-card fade-up pad-secondary">
+        <div class="pad-icon">🦴</div>
+        <h3 class="pad-title">Klacht? Begin hier.</h3>
+        <p class="pad-desc">Heb je een blessure of pijn? Een intakeconsult is de eerste stap. Veel cliënten ontdekken daarna dat er veel meer mogelijk is.</p>
+        <ul class="pad-features">
+          <li>✓ Sportfysiotherapie</li>
+          <li>✓ Dry Needling</li>
+          <li>✓ Hardloopfysiotherapie & loopanalyse</li>
+          <li>✓ Vergoeding via zorgverzekering</li>
         </ul>
-        <div class="program-price">
-          <span class="price-num">€197</span>
-          <span>/ maand (3 maanden)</span>
-        </div>
-        <a href="#contact" class="btn-primary" style="width:100%; text-align:center; display:block;">Start mijn programma →</a>
+        <a href="#contact" class="pad-cta" onclick="setInterest('sportfysiotherapie')">Maak een afspraak →</a>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- BOOTCAMP -->
-<section class="bootcamp-section" id="bootcamp">
-  <div class="bootcamp-inner">
-    <div class="bootcamp-left reveal">
-      <div class="section-tag">Groepstraining</div>
-      <h2>Bootcamp<br><span class="accent">Schema</span></h2>
-      <p class="section-intro" style="margin-bottom: 0">Iedere week vier sessies, speciaal ontworpen voor hardlopers en wielrenners. Maximaal 10 deelnemers per groep.</p>
-      <div class="bootcamp-schedule">
-        <div class="schedule-item">
-          <div class="schedule-day">MA</div>
-          <div class="schedule-info">
-            <div class="schedule-name">Run Power Training</div>
-            <div class="schedule-meta">06:30 – 07:30 · Buiten</div>
-          </div>
-          <div class="schedule-spots">
-            <div class="spots-num">3 plekken</div>
-            <div class="spots-label">beschikbaar</div>
-          </div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-day">WO</div>
-          <div class="schedule-info">
-            <div class="schedule-name">Functional Strength</div>
-            <div class="schedule-meta">06:30 – 07:30 · Sporthal</div>
-          </div>
-          <div class="schedule-spots">
-            <div class="spots-num">5 plekken</div>
-            <div class="spots-label">beschikbaar</div>
-          </div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-day">DO</div>
-          <div class="schedule-info">
-            <div class="schedule-name">Interval Run</div>
-            <div class="schedule-meta">17:30 – 18:30 · Buiten</div>
-          </div>
-          <div class="schedule-spots">
-            <div class="spots-num">2 plekken</div>
-            <div class="spots-label">beschikbaar</div>
-          </div>
-        </div>
-        <div class="schedule-item">
-          <div class="schedule-day">ZA</div>
-          <div class="schedule-info">
-            <div class="schedule-name">Endurance & Recovery</div>
-            <div class="schedule-meta">08:00 – 09:30 · Natuur</div>
-          </div>
-          <div class="schedule-spots">
-            <div class="spots-num">4 plekken</div>
-            <div class="spots-label">beschikbaar</div>
-          </div>
-        </div>
+      <div class="pad-card fade-up pad-featured">
+        <div class="pad-label">Meest gekozen</div>
+        <div class="pad-icon">🌿</div>
+        <h3 class="pad-title">Vitaliteitstraject</h3>
+        <p class="pad-desc">6 domeinen, 1 plan. Van voeding en slaap tot supplementen en beweging. Start met een gratis analyse en ontdek wat jouw lichaam echt nodig heeft.</p>
+        <ul class="pad-features">
+          <li>✓ Gratis analyse als startpunt</li>
+          <li>✓ Persoonlijk voedings- en supplementenplan</li>
+          <li>✓ Begeleiding over meerdere maanden</li>
+          <li>✓ Aanvulling op of los van fysiotherapie</li>
+        </ul>
+        <a href="#vitaliteit" class="btn-primary" style="margin-top:auto;display:inline-block;">Bekijk pakketten →</a>
       </div>
-      <div style="margin-top: 2rem">
-        <a href="#contact" class="btn-primary">Reserveer jouw plek</a>
-      </div>
-    </div>
-    <div class="bootcamp-right reveal">
-      <div class="section-tag">Wat je krijgt</div>
-      <h2>Meer dan een<br><span class="accent">workout</span></h2>
-      <div class="bootcamp-features">
-        <div class="feature">
-          <div class="feature-icon">🎯</div>
-          <div class="feature-text">
-            <h4>Sportspecifiek</h4>
-            <p>Elke oefening is afgestemd op de behoeften van hardlopers en wielrenners. Geen generieke gym-sessies.</p>
-          </div>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">👩‍⚕️</div>
-          <div class="feature-text">
-            <h4>Begeleiding door fysiotherapeut</h4>
-            <p>Dorien kijkt mee naar techniek en signaleert vroeg als er iets niet klopt. Minder blessures, meer resultaat.</p>
-          </div>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">🤝</div>
-          <div class="feature-text">
-            <h4>Community van sporters</h4>
-            <p>Train samen met gelijkgestemden die dezelfde doelen hebben. Motivatie die je nergens anders vindt.</p>
-          </div>
-        </div>
-      </div>
-      <div style="background: rgba(232,93,32,0.1); border: 1px solid rgba(232,93,32,0.3); padding: 24px; border-radius: 2px;">
-        <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--white); margin-bottom: 4px;">€79 / maand</div>
-        <div style="font-size: 0.85rem; color: var(--light-gray); margin-bottom: 14px;">Onbeperkt bootcamps · Geen contract</div>
-        <a href="#contact" class="btn-primary">Direct aanmelden</a>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- SUPPLEMENTEN -->
-<section class="supps-section" id="supplementen">
-  <div class="section-tag">Sportersvoeding</div>
-  <h2>Supplementen voor<br><span class="accent">topprestaties</span></h2>
-  <p class="section-intro" style="color: var(--gray)">Zorgvuldig geselecteerde, professionele supplementen die Dorien persoonlijk gebruikt en aanbeveelt. Geen hype, alleen wat werkt.</p>
-  <div class="supps-grid reveal">
-    <div class="supp-card">
-      <div class="supp-img">🏃</div>
-      <div class="supp-name">Recover Pro</div>
-      <div class="supp-desc">Spierherstel na intensieve training. Optimale verhouding BCAA's en glutamine.</div>
-      <a href="#" class="supp-cta">Bekijk product →</a>
-    </div>
-    <div class="supp-card">
-      <div class="supp-img">⚡</div>
-      <div class="supp-name">Endurance Fuel</div>
-      <div class="supp-desc">Langdurige energie zonder pieken en dalen. Ideaal voor lange duurtrainingen.</div>
-      <a href="#" class="supp-cta">Bekijk product →</a>
-    </div>
-    <div class="supp-card">
-      <div class="supp-img">💊</div>
-      <div class="supp-name">Joint Support</div>
-      <div class="supp-desc">Gewrichten & pezen sterker maken. Collageen, glucosamine & vitamine C-complex.</div>
-      <a href="#" class="supp-cta">Bekijk product →</a>
-    </div>
-    <div class="supp-card">
-      <div class="supp-img">🌙</div>
-      <div class="supp-name">Sleep & Recover</div>
-      <div class="supp-desc">Diepere slaap, betere hormoonbalans. Magnesium bisglycinaat & ashwagandha.</div>
-      <a href="#" class="supp-cta">Bekijk product →</a>
-    </div>
-  </div>
-  <div style="text-align:center; margin-top: 3rem">
-    <a href="#" class="btn-primary" style="background: var(--green); border-color: var(--green)">Alle supplementen bekijken</a>
-  </div>
-</section>
+      <div class="pad-card fade-up">
+        <div class="pad-icon">🏋️</div>
+        <h3 class="pad-title">Personal Training</h3>
+        <p class="pad-desc">Trainen met een plan dat werkt voor jóuw lichaam. Sessies van 30–60 min, met een trainingsapp voor zelfstandig doortrainen.</p>
+        <ul class="pad-features">
+          <li>✓ Persoonlijk schema in app</li>
+          <li>✓ Sessies 30, 45 of 60 minuten</li>
+          <li>✓ Combineerbaar met fysiotherapie</li>
+          <li>✓ Sterk fundament na blessure</li>
+        </ul>
+        <a href="#contact" class="pad-cta" onclick="setInterest('personal_training')">Afspraak maken →</a>
+      </div>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials-section">
-  <div class="section-tag">Resultaten</div>
-  <h2>Wat sporters<br><span class="accent">zeggen</span></h2>
-  <div class="testimonials-grid reveal">
-    <div class="testimonial">
-      <p class="testimonial-text">Na drie maanden hardlopen zonder pijn — iets wat ik jaren niet had. Dorien heeft niet alleen mijn knie behandeld maar echt de oorzaak aangepakt.</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">MV</div>
+      <div class="pad-card fade-up">
+        <div class="pad-icon">🔥</div>
+        <h3 class="pad-title">Bootcamp</h3>
+        <p class="pad-desc">Trainen in groepsverband onder begeleiding van Dorien Janse. Krachtig, gevarieerd en sociaal — voor beginners én gevorderden.</p>
+        <ul class="pad-features">
+          <li>✓ Groepssessies buiten in Nieuwland</li>
+          <li>✓ Knipkaart of abonnement</li>
+          <li>✓ Combineerbaar met PT of vitaliteitstraject</li>
+          <li>✓ Proefles altijd gratis</li>
+        </ul>
+        <a href="#bootcamp" class="pad-cta">Probeer een les →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="track-divider"></div>
+
+  <section id="diensten" class="diensten">
+    <div class="diensten-header fade-up">
+      <div>
+        <p class="section-tag">Wat wij doen</p>
+        <h2 class="section-title">Meer dan alleen fysiotherapie</h2>
+      </div>
+      <p class="section-body" style="max-width:400px;" data-cms="diensten.tekst">Onze aanpak gaat verder dan het behandelprotocol. We combineren sportfysio, training en vitaliteitsbegeleiding voor een compleet resultaat.</p>
+    </div>
+
+    <div class="diensten-grid">
+      <div class="dienst-card fade-up">
+        <div class="dienst-icon">🦴</div>
+        <h3 class="dienst-title">Sportfysiotherapie</h3>
+        <p class="dienst-desc">Uitgebreide intake, neuromotorisch onderzoek, mobilisatie, dry needling en een behandelplan op maat. Voor sporters én niet-sporters.</p>
+      </div>
+      <div class="dienst-card fade-up">
+        <div class="dienst-icon">🏃</div>
+        <h3 class="dienst-title">Hardloopfysiotherapie</h3>
+        <p class="dienst-desc">Loopanalyse, blessurebehandeling en techniektraining. Speciaal voor hardlopers die blessurevrij willen blijven en beter willen worden.</p>
+      </div>
+      <div class="dienst-card fade-up">
+        <div class="dienst-icon">⚡</div>
+        <h3 class="dienst-title">Dry Needling</h3>
+        <p class="dienst-desc">Behandeling van triggerpoints in spieren voor directe pijnverlichting en herstel van bewegingsvrijheid. Valt onder de fysiotherapievergoeding.</p>
+      </div>
+      <div class="dienst-card fade-up">
+        <div class="dienst-icon">🧠</div>
+        <h3 class="dienst-title">Neuro Kinetische Therapie</h3>
+        <p class="dienst-desc">Onderzoek naar disbalansen in het lichaam via het motorische systeem. Effectief bij hardnekkige klachten die niet reageren op reguliere therapie.</p>
+      </div>
+      <div class="dienst-card fade-up" id="personal-training">
+        <div class="dienst-icon">💪</div>
+        <h3 class="dienst-title">Personal Training</h3>
+        <p class="dienst-desc">Sessies van 30, 45 of 60 minuten. Met een persoonlijk trainingsschema (in een app) train je zelfstandig in onze ruimte of je eigen gym.</p>
+        <a href="#contact" class="dienst-link" onclick="setInterest('personal_training')">Afspraak maken →</a>
+      </div>
+      <div class="dienst-card fade-up">
+        <div class="dienst-icon">🤲</div>
+        <h3 class="dienst-title">Sportmassage</h3>
+        <p class="dienst-desc">Herstelgerichte massage voor sporters na intensieve trainingsperiodes, wedstrijden of als onderdeel van een blessurepreventie routine.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="hardlopen" class="running">
+    <div class="running-inner">
+      <div class="running-content">
+        <p class="section-tag">Voor hardlopers</p>
+        <h2 class="section-title" style="color:var(--white);">Harder lopen begint<br><em style="color:var(--clay);font-style:italic;">bij beter herstellen</em></h2>
+        <p class="section-body" data-cms="hardlopen.tekst">Dorien is zelf marathonloper en begrijpt als geen ander wat jouw lichaam nodig heeft. Haar aanpak voor lopers is gericht op twee pijlers: blessurepreventie en optimaal herstelvermogen. Want wie beter herstelt, kan harder trainen.</p>
+
+        <div class="running-pillars">
+          <div class="pillar">
+            <div class="pillar-num">01</div>
+            <div class="pillar-title">Blessurepreventie</div>
+            <p class="pillar-desc">Loopanalyse, core-stabiliteit en techniektraining om zwakke plekken te elimineren voordat ze tot blessures leiden.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">02</div>
+            <div class="pillar-title">Herstelvermogen</div>
+            <p class="pillar-desc">Slaap, voeding, supplementen en de juiste training-rustverhouding. Het fundament van elke serieuze loper.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">03</div>
+            <div class="pillar-title">Core Training</div>
+            <p class="pillar-desc">Een sterke kern is de basis van efficiënt lopen. Gerichte oefeningen die jouw loopeconomie direct verbeteren.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">04</div>
+            <div class="pillar-title">Holistische Vitaliteit</div>
+            <p class="pillar-desc">Supplementen, ademhaling, immuunsysteem en stressbeheer als onderdeel van jouw trainingsplan.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 2.5rem;">
+          <a href="#contact" class="btn-primary">Plan een loopanalyse →</a>
+        </div>
+      </div>
+
+      <div class="running-visual">
+        <img
+          src="https://primary.jwwb.nl/public/v/p/j/temp-medrplgfuclrcarjtpom/physis_vitaliteitfiguur.png"
+          alt="Overzicht van hardloopfysiotherapie en vitaliteit"
+          loading="lazy"
+          onerror="this.style.background='#2C3E2D';this.removeAttribute('src')"
+        >
+        <div class="running-badge">Running specialist</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BOOTCAMP SECTIE ─── -->
+  <section id="bootcamp" class="bootcamp">
+    <div class="bootcamp-inner">
+      <div class="bootcamp-content fade-up">
+        <p class="section-tag">Running Bootcamp · 10 jaar Nieuwland</p>
+        <h2 class="section-title" style="color:var(--white);">Buiten trainen,<br><em style="color:var(--clay);font-style:italic;">samen sterker.</em></h2>
+        <p class="section-body" style="color:rgba(255,255,255,0.7);" data-cms="bootcamp.tekst">Hardlooptechniek, kracht, conditie en cooling-down — allemaal in één uur buiten in Amersfoort Nieuwland. Dorien Janse past elke oefening aan op jouw niveau, ook bij blessures. Wandelen als hardlopen nog niet kan? Geen probleem.</p>
+
+        <div class="bootcamp-schema">
+          <p class="section-tag" style="color:var(--clay);margin-bottom:0.8rem;">Trainingstijden</p>
+          <div class="schema-grid">
+            <div class="schema-item">
+              <span class="schema-dag">Maandag</span>
+              <span class="schema-tijden">19:00 &amp; 20:00 uur</span>
+            </div>
+            <div class="schema-item">
+              <span class="schema-dag">Donderdag</span>
+              <span class="schema-tijden">19:00 &amp; 20:00 uur</span>
+            </div>
+            <div class="schema-item schema-item-accent">
+              <span class="schema-dag">Vrijdag</span>
+              <span class="schema-tijden">09:00 uur <em style="font-size:0.75rem;opacity:0.7;font-style:normal;">· girls only</em></span>
+            </div>
+          </div>
+          <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:0.8rem;">Zomer: bij de Draak in Nieuwland · Winter: overdekt parkeerterrein Calveen (vr: Heelkruid)</p>
+        </div>
+
+        <div class="bootcamp-options">
+          <div class="bootcamp-option">
+            <span class="bootcamp-option-name">Proefles</span>
+            <span class="bootcamp-option-price">Gratis</span>
+          </div>
+          <div class="bootcamp-option">
+            <span class="bootcamp-option-name">Knipkaart 10 trainingen</span>
+            <span class="bootcamp-option-price">€ 100,-</span>
+          </div>
+          <div class="bootcamp-option">
+            <span class="bootcamp-option-name">Abonnement 3 mnd · 1× per week</span>
+            <span class="bootcamp-option-price">€ 80,-</span>
+          </div>
+          <div class="bootcamp-option bootcamp-option-highlight">
+            <span class="bootcamp-option-name">Abonnement 3 mnd · 2× per week</span>
+            <span class="bootcamp-option-price">€ 140,-</span>
+          </div>
+          <div class="bootcamp-option">
+            <span class="bootcamp-option-name">Jaarabonnement · 1× per week</span>
+            <span class="bootcamp-option-price">€ 305,-</span>
+          </div>
+          <div class="bootcamp-option">
+            <span class="bootcamp-option-name">Jaarabonnement · 2× per week</span>
+            <span class="bootcamp-option-price">€ 532,-</span>
+          </div>
+        </div>
+
+        <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="#contact" class="btn-primary" onclick="setInterest('bootcamp')">Meld je aan →</a>
+          <a href="#contact" class="btn-outline" onclick="setInterest('bootcamp')">Plan een gratis proefles</a>
+        </div>
+      </div>
+
+      <div class="bootcamp-visual fade-up">
+        <div class="bootcamp-card">
+          <p class="section-tag" style="color:var(--clay);">Waarom bootcamp?</p>
+          <div class="bootcamp-why">
+            <div class="bootcamp-why-item">
+              <div class="bootcamp-why-icon">🎯</div>
+              <div>
+                <strong>Fysiotherapeut als coach</strong>
+                <p>Dorien past elke oefening aan op jouw niveau en beperkingen. Trainen bij een blessure? Kan gewoon.</p>
+              </div>
+            </div>
+            <div class="bootcamp-why-item">
+              <div class="bootcamp-why-icon">🌿</div>
+              <div>
+                <strong>Buiten in de buitenlucht</strong>
+                <p>Kettlebells, ballen, gewichten én de omgeving. Gevarieerde workouts die je nooit vervelen.</p>
+              </div>
+            </div>
+            <div class="bootcamp-why-item">
+              <div class="bootcamp-why-icon">🔗</div>
+              <div>
+                <strong>Combineer voor maximaal resultaat</strong>
+                <p>Bootcamp + vitaliteitstraject of PT? Dat is precies het pakket dat de meeste resultaten geeft.</p>
+              </div>
+            </div>
+            <div class="bootcamp-why-item">
+              <div class="bootcamp-why-icon">📋</div>
+              <div>
+                <strong>Intake voor beginners</strong>
+                <p>Lang niet gesport? We plannen een persoonlijke intake + begeleide training zodat je sterk start.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <div class="vitaal-layout">
+      <div class="fade-up">
+        <p class="section-tag">Vitaliteitstraject</p>
+        <h2 class="section-title">Jouw lichaam herstelt zichzelf — <em style="font-style:italic;color:var(--clay);">als je het laat</em></h2>
+        <p class="section-body" data-cms="vitaliteit.tekst">Moe, blessure die niet wil genezen, darmklachten, gewicht dat er niet af wil? Dit zijn signalen dat jouw herstelvermogen verminderd is. Met ons vitaliteitstraject brengen we de 6 domeinen weer in balans.</p>
+
+        <div class="vitaal-domains">
+          <div class="domain-pill">
+            <div class="domain-icon">😮‍💨</div>
+            <div class="domain-name">Ademhaling</div>
+          </div>
+          <div class="domain-pill">
+            <div class="domain-icon">🥗</div>
+            <div class="domain-name">Voeding</div>
+          </div>
+          <div class="domain-pill">
+            <div class="domain-icon">🛡️</div>
+            <div class="domain-name">Immuun</div>
+          </div>
+          <div class="domain-pill">
+            <div class="domain-icon">🧘</div>
+            <div class="domain-name">Stress</div>
+          </div>
+          <div class="domain-pill">
+            <div class="domain-icon">💤</div>
+            <div class="domain-name">Slaap</div>
+          </div>
+          <div class="domain-pill">
+            <div class="domain-icon">🏋️</div>
+            <div class="domain-name">Beweging</div>
+          </div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#6a7a6c;margin-top:1.5rem;line-height:1.7;">
+          + Advies over aanvullende supplementen (o.a. magnesium, omega-3) als onderdeel van jouw gepersonaliseerd plan.
+        </p>
+      </div>
+
+      <div class="vitaal-right fade-up">
+        <div class="vitaal-card">
+          <h3>Kies het pakket<br>dat bij jou past</h3>
+          <p style="font-size:0.88rem;line-height:1.7;color:rgba(255,255,255,0.65);margin-top:0.5rem;">Alle pakketten starten met een uitgebreide intake inclusief persoonlijke analyse, persoonlijk advies en voedingsplan.</p>
+          <div class="vitaal-packages">
+            <div class="package-row">
+              <span class="package-name">Korte analyse (gratis)</span>
+              <span class="package-price">€ 0,-</span>
+            </div>
+            <div class="package-row">
+              <span class="package-name">Eenmalig consult / intake</span>
+              <span class="package-price">€ 133,-</span>
+            </div>
+            <div class="package-row">
+              <span class="package-name">Basis Vitaal (intake + 1 consult)</span>
+              <span class="package-price">€ 250,-</span>
+            </div>
+            <div class="package-row">
+              <span class="package-name">Goed Vitaal (intake + 2 consulten)</span>
+              <span class="package-price">€ 360,-</span>
+            </div>
+            <div class="package-row">
+              <span class="package-name">Super Vitaal (intake + 4 consulten)</span>
+              <span class="package-price">€ 545,-</span>
+            </div>
+          </div>
+          <div style="margin-top:2rem;">
+            <a href="#contact" class="btn-primary" style="display:inline-block;" onclick="setInterest('vitaliteitstraject')">Start gratis analyse →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SUPPLEMENTEN BANNER ─── -->
+  <section class="supplementen-banner fade-up">
+    <div class="suppl-inner">
+      <div class="suppl-left">
+        <p class="section-tag" style="color:var(--clay-light);">Supplementen</p>
+        <h3>De juiste voedingsstoffen,<br>op het juiste moment.</h3>
+        <p>Als onderdeel van jouw vitaliteitstraject of personal training geeft Dorien persoonlijk advies over supplementen. Magnesium, omega-3, vitamine D — afgestemd op jouw analyse, niet op wat de markt verkoopt.</p>
+      </div>
+      <div class="suppl-right">
+        <div class="suppl-pills">
+          <span class="suppl-pill">Magnesium</span>
+          <span class="suppl-pill">Omega-3</span>
+          <span class="suppl-pill">Vitamine D3/K2</span>
+          <span class="suppl-pill">Adaptogenen</span>
+          <span class="suppl-pill">Collageen</span>
+          <span class="suppl-pill">Eiwitten</span>
+          <span class="suppl-pill">Probiotica</span>
+        </div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);margin-top:1rem;">Altijd evidence-based, altijd persoonlijk. Onderdeel van elk vitaliteitspakket.</p>
+        <a href="#vitaliteit" class="btn-primary" style="margin-top:1.5rem;display:inline-block;">Bekijk vitaliteitspakketten →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="track-divider"></div>
+    <div class="fade-up">
+      <p class="section-tag">Het team</p>
+      <h2 class="section-title">Persoonlijk contact,<br>professionele expertise</h2>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://primary.jwwb.nl/public/v/p/j/temp-medrplgfuclrcarjtpom/zomerfoto-2.jpg" alt="Portret van Dorien Janse" loading="lazy">
         <div>
-          <div class="author-name">Mark van der Berg</div>
-          <div class="author-meta">Marathonloper · 3:24 PR</div>
-          <div class="stars">★★★★★</div>
+          <div class="team-name">Dorien Janse</div>
+          <div class="team-role">Oprichter · Sportfysio · Running Coach</div>
+          <p class="team-bio">Na haar universitaire opleiding als bewegingswetenschapper en 10 jaar in een reguliere praktijk, startte Dorien in 2015 haar eigen praktijk. Haar specialisme: hardlopers blessurevrij laten presteren via een holistische aanpak. Zelf liep ze de Marathon Rotterdam.</p>
+          <div class="team-tags">
+            <span class="tag">Sportfysiotherapie</span>
+            <span class="tag">NKT</span>
+            <span class="tag">Dry Needling</span>
+            <span class="tag">Hardloopfysio</span>
+            <span class="tag">Vitaliteit</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="testimonial">
-      <p class="testimonial-text">Het vitaliteitsprogramma heeft mijn hele leven veranderd. Meer energie, betere slaap en mijn fietstijden zijn met 8% verbeterd. Absoluut de investering waard.</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">SH</div>
+
+      <div class="team-card fade-up">
+        <div class="team-photo-placeholder" aria-label="Geen foto beschikbaar voor Michaël">M</div>
         <div>
-          <div class="author-name">Sandra Hoekstra</div>
-          <div class="author-meta">Wielrenster · Gran Fondo rijdster</div>
-          <div class="stars">★★★★★</div>
+          <div class="team-name">Michaël Kornmann</div>
+          <div class="team-role">Manueel Therapeut · Hardlooptrainer</div>
+          <p class="team-bio">Michaël combineert manuele therapie, sportfysiotherapie en dry needling met zijn passie voor hardlopen. Als gecertificeerd hardlooptrainer (BLT3) begeleidt hij lopers van beginner tot gevorderd niveau.</p>
+          <div class="team-tags">
+            <span class="tag">Manuele therapie</span>
+            <span class="tag">Dry Needling</span>
+            <span class="tag">Hardlooptraining</span>
+            <span class="tag">BIG geregistreerd</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="testimonial">
-      <p class="testimonial-text">De bootcamps zijn van een ander niveau. Dorien ziet meteen als je techniek niet klopt en corrigeert dit. In 6 weken sterker geworden dan in 2 jaar zelf trainen.</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">JP</div>
-        <div>
-          <div class="author-name">Johan Pieters</div>
-          <div class="author-meta">Triatleet · Ironman finisher</div>
-          <div class="stars">★★★★★</div>
-        </div>
+  </section>
+
+  <section id="recensies" class="recensies">
+    <p class="section-tag fade-up">Ervaringen</p>
+    <h2 class="section-title fade-up">Wat cliënten zeggen</h2>
+
+    <div class="recensies-grid">
+      <div class="recensie-card fade-up">
+        <div class="stars" aria-label="5 sterren">★★★★★</div>
+        <p class="recensie-text" data-cms="recensies[0].tekst">"Zenuwklachten in nek en arm via mond-op-mondreclame bij Dorien terechtgekomen. Nu klachtenvrij en ben er blijven hangen voor de fysio/sport lessen. Erg blij met deze combipraktijk."</p>
+        <div class="recensie-author" data-cms="recensies[0].auteur">— Cliënt via Zorgkaart Nederland</div>
+      </div>
+      <div class="recensie-card fade-up">
+        <div class="stars" aria-label="5 sterren">★★★★★</div>
+        <p class="recensie-text" data-cms="recensies[1].tekst">"Goed georganiseerd en een prettig sportklimaat. Dorien en haar team kijken écht verder dan de klacht. Een aanrader voor iedereen die serieus aan herstel en prestatie wil werken."</p>
+        <div class="recensie-author" data-cms="recensies[1].auteur">— Cliënt via Zorgkaart Nederland</div>
+      </div>
+      <div class="recensie-card fade-up">
+        <div class="stars" aria-label="5 sterren">★★★★★</div>
+        <p class="recensie-text" data-cms="recensies[2].tekst">"Eindelijk een fysio die begrijpt wat een hardloper nodig heeft. Niet alleen de blessure behandelen maar ook kijken naar voeding, slaap en training. Dat maakt het verschil."</p>
+        <div class="recensie-author" data-cms="recensies[2].auteur">— Hardloper, Amersfoort</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- OVER DORIEN -->
-<section class="about-section" id="over">
-  <div class="about-left reveal">
-    <div class="about-photo">
-      <img src="data:image/webp;base64,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" alt="Dorien Janse" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+  <!-- ─── CTA BANNER ─── -->
+  <section class="cta-banner fade-up">
+    <div class="cta-banner-inner">
+      <div>
+        <p class="section-tag" style="color:var(--clay);">Klaar om te starten?</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:900;color:var(--white);line-height:1.1;">Wacht niet op de volgende blessure.<br><em style="color:var(--clay);font-style:italic;">Begin vandaag.</em></h2>
+      </div>
+      <div class="cta-banner-btns">
+        <a href="#contact" class="btn-primary" onclick="setInterest('vitaliteitstraject')">Start gratis analyse →</a>
+        <a href="tel:0614184448" class="btn-outline">Bel direct: 06-14184448</a>
+      </div>
     </div>
-    <div class="about-credentials">
-      <span class="credential">BSc Fysiotherapie</span>
-      <span class="credential">Sportfysiotherapeut</span>
-      <span class="credential">Personal Trainer</span>
-      <span class="credential">Vitaliteitscoach</span>
-    </div>
-  </div>
-  <div class="about-right reveal">
-    <div class="section-tag">Over mij</div>
-    <h2>Dorien<br><span class="accent">Janse</span></h2>
-    <p class="about-text">
-      Als <strong>sportfysiotherapeut en personal trainer</strong> werk ik al meer dan 12 jaar met hardlopers en wielrenners die meer uit hun lichaam willen halen. Ik ben zelf actief sporter en begrijp wat er nodig is om te presteren én gezond te blijven.
-    </p>
-    <p class="about-text">
-      Mijn aanpak is <strong>holistisch</strong>: ik kijk verder dan de blessure of het doel. Voeding, slaap, stressniveau en trainingsbelasting — het hangt allemaal samen. Dat is waarom mijn resultaten duurzaam zijn.
-    </p>
-    <p class="about-text">
-      Of je nu een blessure wilt overwinnen, jouw PR wilt verbeteren of gewoon vitaler wilt worden: ik geloof dat iedereen het verdient om <strong>pijnvrij en energiek te bewegen</strong>.
-    </p>
-    <div class="about-ctas">
-      <a href="#contact" class="btn-primary">Maak kennis →</a>
-      <a href="#diensten" class="btn-secondary">Bekijk diensten</a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta" id="contact">
-  <h2>KLAAR OM TE<br>STARTEN?</h2>
-  <p>Plan vandaag nog een gratis intakegesprek en ontdek welke aanpak het beste bij jou past. Geen verplichtingen, wel resultaat.</p>
-  <div class="cta-buttons">
-    <a href="/cdn-cgi/l/email-protection#046d6a626b44606b766d616a6e656a77612a6a68" class="btn-white">📅 Gratis gesprek inplannen</a>
-    <a href="tel:+31612345678" class="btn-white-outline">📞 Direct bellen</a>
-  </div>
-</section>
+  <section id="contact" class="contact">
+    <div class="contact-layout">
+      <div class="fade-up">
+        <p class="section-tag">Contact</p>
+        <h2 class="section-title" data-cms="contact.titel">Klaar om<br>te starten?</h2>
+        <p class="section-body" data-cms="contact.tekst">Stel een vraag, maak een afspraak of vraag de gratis Physis-vragenlijst aan. We reageren binnen één werkdag.</p>
 
-<!-- FOOTER -->
+        <div class="contact-info-block" style="margin-top:2.5rem;">
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">📍</div>
+            <div class="contact-detail">
+              <h4>Adres</h4>
+              <p>Astronaut 12<br>3824 MJ Amersfoort<br>(Nieuwland / Calveen)</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">📞</div>
+            <div class="contact-detail">
+              <h4>Telefoon</h4>
+              <p><a href="tel:0614184448" style="color:inherit;text-decoration:none;">06-14184448</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">✉️</div>
+            <div class="contact-detail">
+              <h4>E-mail</h4>
+              <p><a href="/cdn-cgi/l/email-protection#375e595158775358455e52595d5659445219595b" style="color:inherit;text-decoration:none;"><span class="__cf_email__" data-cfemail="c4adaaa2ab84a0abb6ada1aaaea5aab7a1eaaaa8">[email&#160;protected]</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form fade-up" name="contact" method="POST" data-netlify="true" onsubmit="handleForm(event)">
+        <input type="hidden" name="form-name" value="contact" />
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="voornaam">Voornaam</label>
+            <input type="text" id="voornaam" name="voornaam" placeholder="Jan" required>
+          </div>
+          <div class="form-group">
+            <label for="achternaam">Achternaam</label>
+            <input type="text" id="achternaam" name="achternaam" placeholder="de Vries" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">E-mailadres</label>
+            <input type="email" id="email" name="email" placeholder="jan@email.nl" required>
+          </div>
+          <div class="form-group">
+            <label for="telefoon">Telefoonnummer</label>
+            <input type="tel" id="telefoon" name="telefoon" placeholder="06-12345678">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="interesse">Ik ben geïnteresseerd in</label>
+          <select id="interesse" name="interesse">
+            <option value="vitaliteitstraject">Vitaliteitstraject</option>
+            <option value="bootcamp">Bootcamp (lid worden / proefles)</option>
+            <option value="personal_training">Personal Training</option>
+            <option value="sportfysiotherapie">Sportfysiotherapie</option>
+            <option value="hardloopfysiotherapie">Hardloopfysiotherapie / loopanalyse</option>
+            <option value="sportmassage">Sportmassage</option>
+            <option value="dry_needling">Dry Needling</option>
+            <option value="anders">Anders / weet ik nog niet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="beltijd">Voorkeur voor terugbelafspraak</label>
+          <select id="beltijd" name="beltijd">
+            <option value="">Geen voorkeur / e-mail is prima</option>
+            <option value="ma-vr-ochtend">Maandag t/m vrijdag — ochtend (9–12 uur)</option>
+            <option value="ma-vr-middag">Maandag t/m vrijdag — middag (12–17 uur)</option>
+            <option value="ma-vr-avond">Maandag t/m donderdag — avond (17–19 uur)</option>
+            <option value="zo-snel-mogelijk">Zo snel mogelijk — bel mij terug</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="bericht">Bericht (optioneel)</label>
+          <textarea id="bericht" name="bericht" placeholder="Beschrijf kort je klacht, vraag of doel..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Stuur bericht →</button>
+      </form>
+    </div>
+  </section>
+</main>
+
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <span class="footer-logo">Dorien<span>Janse</span></span>
-      <p class="footer-desc">Sportfysiotherapeut, personal trainer en vitaliteitscoach voor hardlopers en wielrenners. Pijnvrij bewegen en beter presteren — dat is mijn missie.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Diensten</h4>
-      <ul>
-        <li><a href="#diensten">Fysiotherapie</a></li>
-        <li><a href="#diensten">Personal Training</a></li>
-        <li><a href="#vitaliteit">Vitaliteitsprogramma</a></li>
-        <li><a href="#bootcamp">Bootcamps</a></li>
-        <li><a href="#supplementen">Supplementen</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Informatie</h4>
-      <ul>
-        <li><a href="#over">Over Dorien</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Tarieven</a></li>
-        <li><a href="#">FAQ</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="/cdn-cgi/l/email-protection#630a0d050c23070c110a060d09020d10064d0d0f"><span class="__cf_email__" data-cfemail="b6dfd8d0d9f6d2d9c4dfd3d8dcd7d8c5d398d8da">[email&#160;protected]</span></a></li>
-        <li><a href="tel:+31612345678">+31 6 12 34 56 78</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">LinkedIn</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Dorien Janse — Alle rechten voorbehouden</span>
-    <span class="footer-copy">KvK: 12345678 · Privacybeleid · Algemene voorwaarden</span>
-  </div>
+  <div class="footer-logo">Dorien<span>Janse</span>.nl</div>
+  <ul class="footer-links">
+    <li><a href="#paden">Hoe het werkt</a></li>
+    <li><a href="#vitaliteit">Vitaliteit</a></li>
+    <li><a href="#bootcamp">Bootcamp</a></li>
+    <li><a href="#diensten">Diensten</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="https://www.dorienjanse.nl/privacy-policy" target="_blank">Privacy</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Dorien Janse · Amersfoort</div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
+  // ─── HAMBURGER MENU ───
+  const hamburger = document.getElementById('hamburger');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+
+  function openMobileMenu() {
+    hamburger.classList.add('open');
+    mobileDrawer.classList.add('open');
+    mobileOverlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileDrawer.classList.remove('open');
+    mobileOverlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+  });
+  mobileOverlay.addEventListener('click', closeMobileMenu);
+
+  // Sluit menu bij klik op een link in de drawer
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  // ─── SCROLL ANIMATIONS ───
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // Smooth nav highlight
-  const sections = document.querySelectorAll('section[id], div[id]');
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) {
-      nav.style.background = 'rgba(255,255,255,0.98)';
-    } else {
-      nav.style.background 
+  // ─── INTERESSE ROUTING (CTA KNOPPEN → FORMULIER) ───
+  function setInterest(value) {
+    const select = document.getElementById('interesse');
+    if (select) select.value = value;
+    // GA4 event: klik op specifieke CTA
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'cta_click', { event_category: 'funnel', event_label: value });
+    }
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ─── GA4: TRACK ALLE CTA KNOPPEN ───
+  document.querySelectorAll('a[href="#contact"], a[href="#vitaliteit"], a[href="#bootcamp"], a[href="#paden"]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (typeof gtag === 'undefined') return;
+      const label = this.textContent.trim().substring(0, 50);
+      const section = this.closest('section')?.id || 'nav';
+      gtag('event', 'cta_click', {
+        event_category: 'navigation',
+        event_label: label,
+        section_origin: section
+      });
+    });
+  });
+
+  // ─── FORM HANDLER (NETLIFY + GA4) ───
+  function handleForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.form-submit');
+    const formData = new FormData(form);
+    const interesse = formData.get('interesse') || 'onbekend';
+
+    btn.textContent = 'Verzenden...';
+    btn.style.pointerEvents = 'none';
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(() => {
+      btn.textContent = 'Verstuurd! ✓';
+      btn.style.background = 'var(--sage)';
+
+      // GA4: lead conversie event
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'generate_lead', {
+          event_category: 'contact_form',
+          event_label: interesse,
+          value: 1
+        });
+      }
+
+      setTimeout(() => {
+        btn.textContent = 'Stuur bericht →';
+        btn.style.background = '';
+        btn.style.pointerEvents = '';
+        form.reset();
+      }, 3000);
+    })
+    .catch(() => {
+      btn.textContent = 'Fout — probeer opnieuw';
+      btn.style.background = 'var(--track)';
+      btn.style.pointerEvents = '';
+      setTimeout(() => {
+        btn.textContent = 'Stuur bericht →';
+        btn.style.background = '';
+      }, 3000);
+    });
+  }
+</script>
+</body>
+</html>
